@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voltline – Electronic devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EDF1;--surface:#FFFFFF;--ink:#101820;--muted:#56626E;--line:#CBD3DB;--accent:#4B2FE0;--on-accent:#FFFFFF;--device:#1B2733;--screen:#8FB4FF;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E141B;--surface:#17202A;--ink:#EDF1F5;--muted:#9AA7B4;--line:#2B3744;--accent:#8E7BFF;--on-accent:#0E141B;--device:#2A3847;--screen:#3A5FB8}}
+:root[data-theme="dark"]{--bg:#0E141B;--surface:#17202A;--ink:#EDF1F5;--muted:#9AA7B4;--line:#2B3744;--accent:#8E7BFF;--on-accent:#0E141B;--device:#2A3847;--screen:#3A5FB8}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{font:800 1.4rem "Bricolage Grotesque",sans-serif;text-decoration:none}
+nav{display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.cart{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:8px 16px;font:500 .95rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:36px 0 64px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800;letter-spacing:-.03em}
+.hero p.lead{color:var(--muted);max-width:44ch;margin:18px 0 26px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 16px;border-radius:999px;font:500 .95rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.specs{margin:0 0 24px;padding:0;list-style:none;border-top:1px solid var(--line)}
+.specs li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.specs span:first-child{color:var(--muted)}
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:12px 22px;font:500 1rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.price{font:700 1.6rem "Bricolage Grotesque",sans-serif;margin-right:18px}
+.stage{background:var(--surface);border-radius:28px;min-height:380px;display:grid;place-items:center;padding:30px}
+.dev{background:var(--device);position:relative;transition:width .35s,height .35s,border-radius .35s}
+.dev::after{content:"";position:absolute;inset:7%;background:var(--screen);border-radius:inherit;border-radius:8%/6%}
+.dev[data-k="Phone"]{width:150px;height:300px;border-radius:26px}
+.dev[data-k="Laptop"]{width:300px;height:190px;border-radius:12px}
+.dev[data-k="Earbuds"]{width:120px;height:120px;border-radius:50%}
+.dev[data-k="Watch"]{width:150px;height:170px;border-radius:38px}
+.dev[data-k="Earbuds"]::after{inset:30%;border-radius:50%}
+@media (prefers-reduced-motion:reduce){.dev{transition:none}}
+section.shop{padding:20px 0 64px}
+.shop h2{font-size:2rem;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.card h3{font-size:1.2rem}
+.card small{color:var(--muted)}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:14px}
+.card .btn{padding:8px 14px;font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.9rem}
+@media (max-width:760px){.hero{grid-template-columns:1fr}nav a{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top">Voltline</a>
+    <nav><a href="#shop">Shop</a><a href="#help">Support</a><button class="cart" id="cart" aria-live="polite">Cart (0)</button></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Devices that last past the warranty.</h1>
+        <p class="lead">Phones, laptops, earbuds and watches, each with a replaceable battery and five years of updates.</p>
+        <div class="tabs" role="tablist" aria-label="Device type" id="tabs"></div>
+        <ul class="specs" id="specs"></ul>
+        <span class="price" id="price"></span><button class="btn" id="heroAdd">Add to cart</button>
+      </div>
+      <div class="stage" aria-hidden="true"><div class="dev" id="dev" data-k="Phone"></div></div>
+    </div>
+
+    <section class="shop" id="shop">
+      <h2>All devices</h2>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <footer id="help">Questions about an order? Email help@voltline.example. Free returns for 30 days.</footer>
+</div>
+
+<script>
+const items=[
+ {id:1,k:"Phone",name:"Volt P2",price:549,specs:[["Screen","6.3 in OLED"],["Battery","4,800 mAh, swappable"],["Storage","128 GB"],["Updates","5 years"]]},
+ {id:2,k:"Laptop",name:"Volt Book 14",price:899,specs:[["Screen","14 in, 2.2K"],["Battery","18 hours"],["Memory","16 GB, upgradable"],["Weight","1.2 kg"]]},
+ {id:3,k:"Earbuds",name:"Volt Buds",price:89,specs:[["Noise control","Adaptive"],["Battery","8 hours + 24 case"],["Water rating","IPX5"],["Charging","USB-C"]]},
+ {id:4,k:"Watch",name:"Volt Watch S",price:179,specs:[["Display","1.4 in AMOLED"],["Battery","9 days"],["Sensors","Heart rate, SpO2"],["Water rating","50 m"]]},
+ {id:5,k:"Phone",name:"Volt P2 Mini",price:429,specs:[["Screen","5.4 in OLED"],["Battery","3,600 mAh"],["Storage","128 GB"],["Updates","5 years"]]},
+ {id:6,k:"Laptop",name:"Volt Book 16",price:1199,specs:[["Screen","16 in, 2.5K"],["Battery","15 hours"],["Memory","32 GB, upgradable"],["Weight","1.7 kg"]]}
+];
+let cart=0,sel=items[0];
+const $=id=>document.getElementById(id);
+const kinds=[...new Set(items.map(i=>i.k))];
+function show(k){
+  sel=items.find(i=>i.k===k);
+  $("dev").dataset.k=k;
+  $("price").textContent="$"+sel.price;
+  $("specs").innerHTML=sel.specs.map(s=>"<li><span>"+s[0]+"</span><span>"+s[1]+"</span></li>").join("");
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.k===k));
+}
+$("tabs").innerHTML=kinds.map(k=>'<button class="tab" role="tab" data-k="'+k+'">'+k+'</button>').join("");
+$("tabs").addEventListener("click",e=>{if(e.target.dataset.k)show(e.target.dataset.k)});
+function add(){cart++;$("cart").textContent="Cart ("+cart+")"}
+$("heroAdd").onclick=add;
+$("grid").innerHTML=items.map(i=>'<article class="card"><small>'+i.k+'</small><h3>'+i.name+'</h3><small>'+i.specs[0][1]+', '+i.specs[1][1]+'</small><div class="row"><strong>$'+i.price+'</strong><button class="btn" data-id="'+i.id+'">Add to cart</button></div></article>').join("");
+$("grid").addEventListener("click",e=>{if(e.target.dataset.id)add()});
+show("Phone");
+</script>
+</body>
+</html>
